@@ -159,7 +159,7 @@ function getGuestName() {
     const params = new URLSearchParams(window.location.search);
     for (const key of ['ten', 'name', 'to', 'guest', 'khach']) {
         const v = (params.get(key) || '').replace(/\s+/g, ' ').trim();
-        if (v) return v.slice(0, 60);
+        if (v) return v.normalize('NFC').slice(0, 60);
     }
     return '';
 }
