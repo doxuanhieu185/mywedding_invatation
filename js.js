@@ -148,3 +148,71 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   
+
+// =====================================================================
+// Theme đỏ: tên khách từ URL, mở thiệp, cánh hoa, hiện dần khi cuộn
+// =====================================================================
+document.documentElement.classList.add('js');
+
+// Tên khách: ?ten=Anh%20Nam  (cũng nhận name, to, guest, khach)
+function getGuestName() {
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ['ten', 'name', 'to', 'guest', 'khach']) {
+        const v = (params.get(key) || '').replace(/\s+/g, ' ').trim();
+        if (v) return v.slice(0, 60);
+    }
+    return '';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    // Điền tên khách (textContent nên không chèn được HTML)
+    const guest = getGuestName();
+    document.querySelectorAll('[data-guest]').forEach(el => {
+        el.textContent = guest || 'Quý khách';
+    });
+    if (guest) document.title = 'Thiệp mời ' + guest + ' - Xuân Hiểu & Quỳnh Trang';
+
+    // Cánh hoa rơi
+    const colors = ['#c8283a', '#e04a5b', '#f2a0a8', '#b31b2b', '#e2b455'];
+    const petals = document.getElementById('petals');
+    function startPetals() {
+        if (!petals || petals.childElementCount) return;
+        for (let i = 0; i < 18; i++) {
+            const p = document.createElement('i');
+            const size = 10 + Math.random() * 12;
+            p.className = 'petal';
+            p.style.left = (Math.random() * 100) + '%';
+            p.style.width = size + 'px';
+            p.style.height = size * 1.3 + 'px';
+            p.style.background = colors[i % colors.length];
+            p.style.setProperty('--t', (10 + Math.random() * 8).toFixed(1) + 's');
+            p.style.setProperty('--dl', (Math.random() * 10).toFixed(1) + 's');
+            p.style.setProperty('--x', (30 + Math.random() * 60).toFixed(0) + 'px');
+            petals.appendChild(p);
+        }
+    }
+
+    // Mở thiệp: hai cánh cửa mở ra, bắt đầu nhạc
+    const root = document.documentElement;
+    const cover = document.getElementById('cover');
+    const openBtn = document.getElementById('openCard');
+    function openCard() {
+        if (root.classList.contains('opened')) return;
+        root.classList.add('opened');
+        window.scrollTo(0, 0);
+        const audio = document.getElementById('myAudio');
+        if (audio) audio.play().catch(() => {});
+        setTimeout(startPetals, 1200);
+        setTimeout(() => { if (cover) cover.style.display = 'none'; }, 2300);
+    }
+    if (openBtn) openBtn.addEventListener('click', openCard);
+    else root.classList.add('opened');
+
+    // Hiện dần từng phần khi cuộn
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+});

@@ -1,0 +1,457 @@
+/* Theme: đỏ đám cưới. Tải sau style.css và style2.css, ghi đè màu + thêm animation.
+   Một nền (kem), một mực (đỏ thẫm), một nhấn (vàng). Phẳng, không gradient, không glass. */
+
+:root {
+    --red: #9b1220;
+    --red-deep: #6e0b16;
+    --cream: #fff6ec;
+    --gold: #e2b455;
+    --ink: #4a0c12;
+    --ease-out: cubic-bezier(.2, .7, .2, 1);
+}
+
+html { background-color: var(--red-deep); }
+html.js:not(.opened) { overflow: hidden; }
+body { background-color: var(--cream); color: var(--ink); }
+
+#audioIndicator { background-color: var(--cream); }
+
+/* ---------- Màn mở thiệp ---------- */
+#cover {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    place-items: center;
+    overflow: hidden;
+}
+html.js #cover { display: grid; }
+.cv_door {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50.2%;
+    background: var(--red);
+    transition: transform 1.5s cubic-bezier(.77, 0, .18, 1) .45s;
+}
+.cv_l { left: 0; }
+.cv_r { right: 0; }
+.opened .cv_l { transform: translateX(-101%); }
+.opened .cv_r { transform: translateX(101%); }
+
+.cv_body {
+    position: relative;
+    z-index: 1;
+    width: min(90%, 520px);
+    text-align: center;
+    color: var(--cream);
+    padding: 24px 0;
+    transition: opacity .5s ease, transform .7s var(--ease-out);
+}
+.opened .cv_body { opacity: 0; transform: scale(.9); pointer-events: none; }
+.opened #cover { visibility: hidden; transition: visibility 0s 2.2s; }
+
+.cv_pre { font-size: 40px; color: var(--gold); }
+.cv_guest {
+    font-size: clamp(40px, 11vw, 64px);
+    line-height: 1.15;
+    margin: 8px 0 20px;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+.cv_names { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; }
+.cv_names span { color: var(--gold); margin: 0 6px; }
+.cv_hint { margin-top: 18px; font-size: 15px; color: var(--cream); opacity: .85; }
+
+.cv_seal {
+    position: relative;
+    margin-top: 34px;
+    width: 104px;
+    height: 104px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--red);
+    font-size: 54px;
+    line-height: 1;
+    cursor: pointer;
+    font-family: "Noto Serif CJK SC", "Microsoft YaHei", "SimSun", serif;
+    animation: sealBeat 2.4s ease-in-out infinite;
+    transition: transform .25s var(--ease-out);
+}
+.cv_seal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    animation: sealPing 2.4s ease-out infinite;
+}
+.cv_seal:hover { transform: scale(1.08); }
+.cv_seal:active { transform: scale(.94); }
+.cv_seal:focus-visible { outline: 3px solid var(--cream); outline-offset: 5px; }
+@keyframes sealBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+@keyframes sealPing { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.7); opacity: 0; } }
+
+/* ---------- Cánh hoa rơi ---------- */
+#petals {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    overflow: hidden;
+}
+.petal {
+    position: absolute;
+    top: -30px;
+    border-radius: 0 100% 0 100%;
+    opacity: 0;
+    animation: petalFall var(--t, 12s) linear var(--dl, 0s) infinite;
+}
+@keyframes petalFall {
+    0%   { opacity: 0; transform: translate3d(0, -5vh, 0) rotate(0deg); }
+    8%   { opacity: .9; }
+    25%  { transform: translate3d(calc(var(--x, 40px) * .8), 28vh, 0) rotate(120deg); }
+    50%  { transform: translate3d(calc(var(--x, 40px) * -.6), 55vh, 0) rotate(260deg); }
+    75%  { transform: translate3d(calc(var(--x, 40px) * .7), 82vh, 0) rotate(380deg); }
+    92%  { opacity: .8; }
+    100% { opacity: 0; transform: translate3d(0, 108vh, 0) rotate(480deg); }
+}
+
+/* ---------- Thiệp đầu trang ---------- */
+.thiep_blur-bg {
+    border-radius: 0;
+    background: rgba(110, 11, 22, .55);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+.thiep_container, .thiep_des { text-shadow: none; color: var(--cream); }
+.thiep_des { color: var(--gold); opacity: 1; font-size: 34px; }
+.thiep_name { color: var(--cream); font-size: clamp(44px, 11vw, 72px); font-weight: 400; line-height: 1.05; }
+.thiep_small { color: var(--gold); font-size: 28px; }
+.hr-wrapper, .hr-add, .thiep_item hr { display: none; }
+.hr-wrapper, .hr-add { background-color: var(--gold); }
+.thiep_item hr { border-top-color: var(--gold); }
+.thiep_main_date { color: var(--gold); font-size: 56px; }
+.thiep_item span { font-size: 15px; }
+.thiep_month_year { font-size: 18px; color: var(--gold); }
+.add_fancy { font-size: 24px; color: var(--gold); }
+.add_big { font-size: 18px; }
+.add_small { font-size: 15px; line-height: 20px; }
+.thiep_map { border-color: var(--gold); transition: transform .3s var(--ease-out), background-color .3s; }
+.thiep_map:hover { border-color: var(--gold); background-color: var(--red); transform: scale(1.12); }
+
+.thiep_guest { margin: 24px 16px 0; }
+.g_line { font-size: 16px; line-height: 1.4; }
+.g_name {
+    display: block;
+    margin-top: 6px;
+    font-weight: 400;
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 1.15;
+    color: var(--gold);
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+/* Hero vào từng lớp sau khi mở thiệp */
+@media (prefers-reduced-motion: no-preference) {
+    html.js .rise { opacity: 0; }
+}
+html.opened .rise { animation: rise 1s var(--ease-out) var(--d, 0s) both; }
+@keyframes rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: none; }
+}
+.thiep_name p { display: block; }
+html.opened .thiep_name .thiep_small { animation: ampPop 1.2s var(--ease-out) .9s both; }
+@keyframes ampPop {
+    0% { transform: scale(.2) rotate(-30deg); opacity: 0; }
+    70% { transform: scale(1.25) rotate(6deg); opacity: 1; }
+    100% { transform: none; opacity: 1; }
+}
+
+/* ---------- Giới thiệu ---------- */
+.gt_des { font-size: 22px; color: var(--ink); }
+.gt_des2 { color: var(--red); font-size: 28px; }
+.gt_img, .gt_img img { border-radius: 6px; }
+
+/* ---------- Thư mời ---------- */
+.moi_container { color: var(--ink); text-align: center; }
+.moi_xihi {
+    font-size: 64px;
+    line-height: 1;
+    color: var(--red);
+    font-family: "Noto Serif CJK SC", "Microsoft YaHei", "SimSun", serif;
+}
+.moi_desc1 { color: var(--red); font-size: 48px; }
+.moi_desc2 { font-size: 15px; letter-spacing: 1px; }
+.moi_guest { margin-top: 18px; color: var(--ink); }
+.moi_guest b {
+    display: block;
+    font-weight: 400;
+    font-size: clamp(34px, 9vw, 48px);
+    line-height: 1.2;
+    color: var(--red);
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    padding: 0 16px;
+}
+.moi_desc3 { color: var(--ink); font-size: 16px; line-height: 1.65; text-align: center; text-indent: 0; width: 84%; }
+.img_big, .img_small { border-radius: 4px; }
+
+/* ---------- Xác nhận ---------- */
+.cf_container {
+    background-color: var(--red);
+    color: var(--cream);
+    box-shadow: none;
+    border-radius: 0;
+    transition: opacity 1.4s ease, transform 1.4s var(--ease-out);
+    padding: 36px 20px;
+}
+.cf_desc1 { font-size: 22px; letter-spacing: 1px; color: var(--gold); }
+.cf_desc2 { font-size: 18px; }
+.cf_desc3 { font-size: 28px; color: var(--gold); }
+.cf_desc4 { color: var(--cream); font-size: 15px; opacity: .9; }
+.cf_btn {
+    background-color: var(--gold);
+    color: var(--ink);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 14px 18px;
+    font-size: 16px;
+    line-height: 1.2;
+    transition: transform .25s var(--ease-out), background-color .25s;
+}
+.cf_btn > a { color: var(--ink); display: block; }
+.cf_btn:hover { background-color: var(--cream); font-size: 16px; box-shadow: none; transform: translateY(-2px); }
+.cf_btn:active { transform: scale(.96); }
+.cf_btn:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+.cf_btn:not(.js_qr) { animation: btnPulse 2.6s ease-in-out infinite; }
+@keyframes btnPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+
+.popup { background-color: rgba(50, 4, 9, .78); }
+#copy-toast { background-color: var(--red); color: var(--cream); border-radius: 0; }
+
+/* ---------- Album ---------- */
+.album_header { justify-content: center; margin-top: 8px; }
+.album_header .line { display: none; }
+.album_header span { font-size: 44px; color: var(--red); margin: 0; }
+.album_container { padding: 12px; column-gap: 10px; }
+.album_container > img { margin-bottom: 10px; border-radius: 4px; }
+
+/* ---------- Cảm ơn ---------- */
+.thank_desc {
+    background-color: rgba(110, 11, 22, .82);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    text-shadow: none;
+    color: var(--cream);
+    font-size: 36px;
+    padding-top: 12px;
+    padding-bottom: 28px;
+    line-height: 1.3;
+}
+.thank_desc.show .heartbeat { animation: heartbeat 1.6s ease-in-out 1s infinite; }
+@keyframes heartbeat {
+    0%, 40%, 100% { transform: scale(1); }
+    15% { transform: scale(1.22); }
+    28% { transform: scale(1.08); }
+}
+.footter { color: var(--cream); }
+.footer-link { background-color: rgba(255, 246, 236, .2); text-shadow: none; }
+.footer-link:hover { background-color: rgba(255, 246, 236, .35); text-shadow: none; }
+
+/* ---------- Hiện dần khi cuộn ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    html.js .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity .9s ease var(--d, 0s), transform .9s var(--ease-out) var(--d, 0s);
+    }
+    html.js .reveal.in { opacity: 1; transform: none; }
+    html.js .moi_xihi.reveal { transform: scale(.3) rotate(-25deg); transition-duration: 1.1s; }
+    html.js .moi_xihi.reveal.in { transform: none; }
+}
+
+/* ---------- Giảm chuyển động ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .petal, #petals { display: none; }
+    .thiep::before, .cv_seal, .cv_seal::after, .cf_btn, .heartbeat { animation: none !important; }
+    html.opened .rise, html.opened .thiep_name .thiep_small { animation-duration: .01s; animation-delay: 0s; }
+    .cv_door { transition-duration: .3s; transition-delay: 0s; }
+    .js_left, .js_right, .js_center, .album_left, .album_right { transform: none; }
+}
+
+.moi_desc2 { padding: 0 20px; text-wrap: balance; }
+
+/* ---------- Popup gửi quà mừng ---------- */
+#copy-toast { z-index: 120; }
+html.qr-lock { overflow: hidden; }
+
+.qrp {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    visibility: hidden;
+    transition: visibility 0s .6s;
+}
+.qrp.open { visibility: visible; transition-delay: 0s; }
+.qrp_bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(50, 4, 9, .86);
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+.qrp.open .qrp_bg { opacity: 1; }
+
+/* hoa bay lên phía sau thẻ */
+.qrp_hearts { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.qrp_hearts i {
+    position: absolute;
+    bottom: -30px;
+    border-radius: 0 100% 0 100%;
+    opacity: 0;
+}
+.qrp.open .qrp_hearts i { animation: qrFloat var(--t, 8s) ease-in var(--dl, 0s) infinite; }
+@keyframes qrFloat {
+    0%   { opacity: 0; transform: translate3d(0, 0, 0) rotate(0deg); }
+    15%  { opacity: .85; }
+    50%  { transform: translate3d(var(--x, 20px), -55vh, 0) rotate(160deg); }
+    100% { opacity: 0; transform: translate3d(calc(var(--x, 20px) * -1), -110vh, 0) rotate(320deg); }
+}
+
+.qrp_card {
+    position: relative;
+    width: min(100%, 680px);
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    background: var(--cream);
+    border: 5px solid var(--gold);
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px) scale(.82) rotate(-2deg);
+    transition: opacity .45s ease, transform .75s cubic-bezier(.34, 1.56, .64, 1);
+}
+.qrp.open .qrp_card { opacity: 1; transform: none; }
+.qrp_card::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--red);
+    pointer-events: none;
+    opacity: .55;
+}
+
+.qrp_scroll {
+    max-height: calc(100vh - 42px);
+    max-height: calc(100dvh - 42px);
+    overflow-y: auto;
+    padding: 36px 24px 28px;
+    overscroll-behavior: contain;
+}
+
+.qrp_corner {
+    position: absolute;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--gold);
+    font-size: 18px;
+    font-family: "Noto Serif CJK SC", "Microsoft YaHei", "SimSun", serif;
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    transition: opacity .4s ease, transform .8s cubic-bezier(.34, 1.56, .64, 1);
+}
+.qrp_c1 { top: -17px; left: -17px; }
+.qrp_c2 { top: -17px; right: -17px; }
+.qrp_c3 { bottom: -17px; left: -17px; }
+.qrp_c4 { bottom: -17px; right: -17px; }
+.qrp.open .qrp_corner { opacity: 1; transform: none; }
+.qrp.open .qrp_c1 { transition-delay: .35s; }
+.qrp.open .qrp_c2 { transition-delay: .45s; }
+.qrp.open .qrp_c4 { transition-delay: .55s; }
+.qrp.open .qrp_c3 { transition-delay: .65s; }
+
+.qrp_close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--red);
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform .3s var(--ease-out);
+}
+.qrp_close:hover { transform: rotate(90deg) scale(1.1); }
+.qrp_close:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+.qrp_xihi {
+    font-size: 54px;
+    line-height: 1;
+    color: var(--red);
+    font-family: "Noto Serif CJK SC", "Microsoft YaHei", "SimSun", serif;
+}
+.qrp.open .qrp_xihi { animation: sealBeat 2.4s ease-in-out .8s infinite; }
+.qrp_head h2 { font-size: 46px; font-weight: 400; color: var(--red); margin-top: 6px; }
+.qrp_head p { font-size: 15px; line-height: 1.6; max-width: 46ch; margin: 8px auto 0; }
+
+.qrp_grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 24px; }
+@media (min-width: 640px) { .qrp_grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
+
+.qrp_item { background: var(--red); color: var(--cream); padding: 16px 14px 18px; }
+.qrp_item figcaption { font-size: 32px; color: var(--gold); margin-bottom: 10px; }
+.qrp_img { background: #fff; overflow: hidden; aspect-ratio: 1125 / 1110; }
+.qrp_img img { display: block; width: 100%; height: auto; margin-top: -25.8%; }
+.qrp_copy {
+    margin-top: 14px;
+    width: 100%;
+    padding: 12px 10px;
+    border: 0;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform .25s var(--ease-out), background-color .25s;
+}
+.qrp_copy:hover { background: var(--cream); transform: translateY(-2px); }
+.qrp_copy:active { transform: scale(.96); }
+.qrp_copy:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+.qrp_thanks { margin-top: 22px; font-size: 32px; color: var(--red); }
+
+/* các phần trong thẻ hiện lần lượt sau khi thẻ bật lên */
+.qrp_head, .qrp_item, .qrp_thanks { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .8s var(--ease-out); }
+.qrp.open .qrp_head, .qrp.open .qrp_item, .qrp.open .qrp_thanks { opacity: 1; transform: none; }
+.qrp.open .qrp_head { transition-delay: .35s; }
+.qrp.open .qrp_item:nth-child(1) { transition-delay: .6s; }
+.qrp.open .qrp_item:nth-child(2) { transition-delay: .8s; }
+.qrp.open .qrp_thanks { transition-delay: 1.05s; }
+/* mã QR mở ra như tấm màn kéo xuống */
+.qrp_img { clip-path: inset(0 0 100% 0); transition: clip-path 1s cubic-bezier(.77, 0, .18, 1); }
+.qrp.open .qrp_img { clip-path: inset(0); }
+.qrp.open .qrp_item:nth-child(1) .qrp_img { transition-delay: .9s; }
+.qrp.open .qrp_item:nth-child(2) .qrp_img { transition-delay: 1.1s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .qrp_hearts { display: none; }
+    .qrp_card, .qrp_corner, .qrp_head, .qrp_item, .qrp_thanks, .qrp_img { transition-duration: .01s !important; transition-delay: 0s !important; transform: none !important; }
+    .qrp_xihi { animation: none !important; }
+}
+
+/* Ảnh album trượt vào từ ngoài khung: cắt ở mép trang để không nở viewport trên điện thoại */
+html, body { overflow-x: clip; }

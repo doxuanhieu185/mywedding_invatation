@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Ngọc Lan & Nguyễn Tiến</title>
+    <meta name="theme-color" content="#9b1220">
+    <title>Wedding Quỳnh Trang & Xuân Hiểu</title>
     <link rel="stylesheet" href="./style.css?v=19.9">
     <link rel="stylesheet" href="./style2.css?v=19.9">
-    <script src="js.js?v=19.9"></script>
+    <link rel="stylesheet" href="./style3.css?v=20.3">
+    <script src="js.js?v=20.0"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:opsz,wght@6..72,500&family=Noto+Serif+Display&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="Lễ Thành Hôn Ngọc Lan & Nguyễn Tiến"/>
+    <meta property="og:title" content="Lễ Thành Hôn Quỳnh Trang & Xuân Hiểu"/>
     <meta property="og:description" content="Thiệp mời dự Lễ Thành Hôn"/>
-    <meta property="og:image" content="https://thiepcuoitienlan.id.vn/source/meta.jpg" />
+    <meta property="og:image" content="https://hieutrangwedding.huahua.id.vn/source/meta.jpg" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://thiepcuoitienlan.id.vn" />
+    <meta property="og:url" content="https://hieutrangwedding.huahua.id.vn" />
     <link rel="icon" href="source/favicon.png" type="image/png">
 
 
@@ -36,7 +38,21 @@
 
 
 
-<body>      
+<body>
+    <!-- màn mở thiệp -->
+    <div id="cover" aria-label="Mở thiệp mời">
+        <div class="cv_door cv_l"></div>
+        <div class="cv_door cv_r"></div>
+        <div class="cv_body">
+            <p class="cv_pre font_fancy">Thiệp mời</p>
+            <p class="cv_guest font_fancy" data-guest>Quý khách</p>
+            <p class="cv_names font_thanh_dam">Xuân Hiểu <span>&amp;</span> Quỳnh Trang</p>
+            <button type="button" id="openCard" class="cv_seal" aria-label="Mở thiệp">囍</button>
+            <p class="cv_hint font_thanh_dam">Chạm để mở thiệp</p>
+        </div>
+    </div>
+    <div id="petals" aria-hidden="true"></div>
+
     <div id="audioIndicator">
         <img src="./source/volume.svg" alt="">
         
@@ -46,47 +62,50 @@
         <div class="thiep_blur-bg">
             <div class="thiep_container">
                 <!-- Phần 0 -->
-                <div class="thiep_des">
+                <div class="thiep_des rise" style="--d:.1s">
                     <p class="font_fancy">Save the Date</p>
                 </div>
-                <!-- Phần 1 -->
-                <div class="thiep_name">
-                    <p class="font_thanh_dam">Nguyễn Tiến</p>
-                    <p class="font_thanh_dam thiep_small">&</p>
-                    <p class="font_thanh_dam">Ngọc Lan</p>
+                <div class="thiep_guest rise" style="--d:.3s">
+                    <p class="g_line font_thanh_dam">Trân trọng kính mời <b class="g_name font_fancy" data-guest>Quý khách</b></p>
                 </div>
+                <!-- Phần 1 -->
+                <h1 class="thiep_name rise" style="--d:.55s">
+                    <p class="font_thanh_dam">Xuân Hiểu</p>
+                    <p class="font_thanh_dam thiep_small">&</p>
+                    <p class="font_thanh_dam">Quỳnh Trang</p>
+                </h1>
                 <!-- Phần 2 -->
-                <div class="thiep_date_box font_thanh_dam">
+                <div class="thiep_date_box font_thanh_dam rise" style="--d:.8s">
                     <hr class="hr-wrapper">
                     <div class="thiep_space"></div>
                     <div class="thiep_date_row">
                       <div class="thiep_item">
                         <hr>
-                        <span class="padding_day">THỨ BA</span>
+                        <span class="padding_day">THỨ BẢY</span>
                         <hr>
                       </div>
-                      <div class="thiep_main_date">29</div>
+                      <div class="thiep_main_date">28</div>
                       <div class="thiep_item">
                         <hr>
                         <span class="padding_hour">11H00</span>
                         <hr>
                       </div>
                     </div>
-                    <div class="thiep_month_year">04.2025</div>
+                    <div class="thiep_month_year">11.2026</div>
                   </div>
                   
                 <!-- Phần 3 -->
-                <div class="thiep_add">
+                <div class="thiep_add rise" style="--d:1.05s">
                     <p class="font_fancy add_fancy">Địa điểm tổ chức</p>
                     <p class="font_thanh_dam add_big">GIA ĐÌNH NHÀ TRAI</p>
-                    <p class="font_thanh_dam add_small">Thôn 12 - Xã Quỳnh Vinh</p>
-                    <p class="font_thanh_dam add_small">Thị xã Hoàng Mai - Tỉnh Nghệ An </p>
+                    <p class="font_thanh_dam add_small">Thôn Quý Cao - Xã Nguyên Giáp</p>
+                    <p class="font_thanh_dam add_small">Thành phố Hải Phòng</p>
                     <hr class="hr-add">
                 </div>
 
                 <!-- phần icon -->
-                <div class="thiep_all_icon">
-                    <a class="thiep_map" href="https://maps.app.goo.gl/xfMHyt22JnTG3dLf8">
+                <div class="thiep_all_icon rise" style="--d:1.3s">
+                    <a class="thiep_map" href="https://maps.app.goo.gl/TuKGz4stnhGaFM4Y9">
                         <img src="./source/pin_map.svg" alt="">
                     </a>
                 </div>
@@ -99,8 +118,8 @@
     </div>
 
     <div class="gt_container">
-        <div class="gt_des font_montserrat"> Giới thiệu </div>
-        <div class="gt_des2 font_thanh_dam"> Chú Rể và Cô Dâu </div>
+        <div class="gt_des font_montserrat reveal"> Giới thiệu </div>
+        <div class="gt_des2 font_thanh_dam reveal" style="--d:.12s"> Chú Rể và Cô Dâu </div>
         <div class="gt_img">
             <img src="./source/re.svg" alt="">
             <!-- <p class="caption font_thanh_dam">Nguyễn Tiến</p> -->
@@ -115,15 +134,17 @@
 
     <!-- Mời -->
     <div class="moi_container">
-        <div class="moi_desc1 font_fancy">Thư mời</div>
-        <div class="moi_desc2 font_tnr">Tham dự Lễ cưới của Nguyễn Tiến & Ngọc Lan</div>
+        <div class="moi_xihi reveal" aria-hidden="true">囍</div>
+        <div class="moi_desc1 font_fancy reveal" style="--d:.1s">Thư mời</div>
+        <div class="moi_guest reveal" style="--d:.2s"><b class="font_fancy" data-guest>Quý khách</b></div>
+        <div class="moi_desc2 font_tnr reveal" style="--d:.3s">Tham dự Lễ cưới của Xuân Hiểu & Quỳnh Trang</div>
         <div class="moi_img">
             <img class="img_small js_l js_left" src="./source/doc/xanh_1.svg" alt="">
             <img class="img_big js_center" src="./source/doc/xanh_2.svg" alt="">
             <img class="img_small js_r js_right" src="./source/doc/xanh_3_lat.svg" alt="">            
         </div>
 
-        <div class="moi_desc3 font_tnr">   Tình yêu là nguồn sáng soi rọi mọi khoảnh khắc. 
+        <div class="moi_desc3 font_tnr reveal">   Tình yêu là nguồn sáng soi rọi mọi khoảnh khắc. 
             Và những khoảnh khắc ấy đã trở thành vĩnh cửu khi chúng tôi quyết định dành 
             trọn quãng đời còn lại bên nhau. Chúng tôi, bằng cả tấm lòng, xin chân thành 
             mời bạn đến chung vui trong ngày lễ trọng đại này. Sự hiện diện của bạn sẽ  
@@ -131,36 +152,55 @@
     </div>
 
     <!-- confirm -->
-    <div class="cf_container nhay-shadow">
+    <div class="cf_container">
         <div class="cf_desc1">Lễ Thành Hôn</div>
-        <div class="cf_desc2">Thứ Ba | 11h00</div>
-        <div class="cf_desc3">29.04.2025</div>
-        <div class="cf_desc4">(Tức Ngày 2 Tháng 4 Năm Ất Tỵ)</div>
+        <div class="cf_desc2">Thứ Bảy | 11h00</div>
+        <div class="cf_desc3">28.11.2026</div>
+        <div class="cf_desc4">(Tức Ngày 20 Tháng 10 Năm Bính Ngọ)</div>
         <button class="cf_btn font_tnr">
-            <a href="https://forms.gle/7zeeJpgnDbF1wN2F8">Xác nhận tham dự</a>
+            <a href="https://web.facebook.com/dxhieu185">Xác nhận tham dự</a>
         </button>
         <button class="cf_btn js_qr font_tnr">
             Gửi quà mừng
         </button>
     </div>
     
-    <!-- pop-up -->
-    <div class="popup">
-        <div class="popup_container hide-horizontal-scrollbar">
-            <div class="popup_item popup_item1">
-                <img src="./source/ngang/qr_anh.svg" alt="">
-                <div class="copy copy_anh" data-copy="107877815585"></div>
-            </div>
-            <div class="popup_item popup_item2">
-                <img src="./source/ngang/qr_chi.svg" alt="">
-                <div class="copy copy_chi" data-copy="3624205122197"></div>
+    <!-- popup gửi quà mừng -->
+    <div id="qrPop" class="qrp" role="dialog" aria-modal="true" aria-labelledby="qrpTitle" aria-hidden="true">
+        <div class="qrp_bg" data-close></div>
+        <div class="qrp_hearts" aria-hidden="true"></div>
+        <div class="qrp_card">
+            <span class="qrp_corner qrp_c1" aria-hidden="true">囍</span>
+            <span class="qrp_corner qrp_c2" aria-hidden="true">囍</span>
+            <span class="qrp_corner qrp_c3" aria-hidden="true">囍</span>
+            <span class="qrp_corner qrp_c4" aria-hidden="true">囍</span>
+            <button type="button" class="qrp_close" data-close aria-label="Đóng">&times;</button>
+            <div class="qrp_scroll">
+                <div class="qrp_head">
+                    <div class="qrp_xihi" aria-hidden="true">囍</div>
+                    <h2 id="qrpTitle" class="font_fancy">Gửi quà mừng</h2>
+                    <p class="font_thanh_dam">Sự hiện diện của bạn là niềm vui lớn nhất. Nếu muốn gửi lời chúc bằng quà mừng, bạn có thể quét mã dưới đây.</p>
+                </div>
+                <div class="qrp_grid">
+                    <figure class="qrp_item">
+                        <figcaption class="font_fancy">Mừng chú rể</figcaption>
+                        <div class="qrp_img"><img src="./source/ngang/qr_nam.png" alt="Mã QR chuyển khoản mừng cưới chú rể Đỗ Xuân Hiểu" loading="lazy"></div>
+                        <button type="button" class="qrp_copy font_thanh_dam" data-copy="19074017914019">Sao chép số tài khoản</button>
+                    </figure>
+                    <figure class="qrp_item">
+                        <figcaption class="font_fancy">Mừng cô dâu</figcaption>
+                        <div class="qrp_img"><img src="./source/ngang/qr_nu.png" alt="Mã QR chuyển khoản mừng cưới cô dâu" loading="lazy"></div>
+                        <button type="button" class="qrp_copy font_thanh_dam" data-copy="19074017914019">Sao chép số tài khoản</button>
+                    </figure>
+                </div>
+                <p class="qrp_thanks font_fancy">Trân trọng cảm ơn!</p>
             </div>
         </div>
     </div>
     <!-- album -->
     <div id="copy-toast">Đã copy!</div>
 
-    <div class="album_header">
+    <div class="album_header reveal">
         <span>Album ảnh cưới</span>
         <div class="line"></div>
     </div>
@@ -186,12 +226,12 @@
     <div class="thank_container">
         
         <div class="thank_desc">
-            <img src="./source/thank.svg" alt="">
+            <img class="heartbeat" src="./source/thank.svg" alt="">
             <p>Rất hân hạnh được đón tiếp!</p>
         </div>
         <div class="footter">
-            © 04/2025 Website by Nguyen Van Hoang | 
-            <a href="https://thiepcuoitienlan.id.vn/" class="footer-link" target="_blank" rel="noopener noreferrer">thiepcuoitienlan.id.vn</a>
+            © 11/2026 Designed by HieuDo | 
+            <a href="https://hieutrangwedding.huahua.id.vn/" class="footer-link" target="_blank" rel="noopener noreferrer">hieutrangwedding.huahua.id.vn</a>
         </div>
     </div>
     
@@ -221,71 +261,58 @@
       }
     });
 
-    const btn_qr = document.querySelector('.js_qr')
-    const pop_up = document.querySelector('.popup')
-    const pop_up_ctn = document.querySelector('.popup_container')
-    const pop_up_item1 = document.querySelector('.popup_item1')
-    const pop_up_item2 = document.querySelector('.popup_item2')
+    // popup gửi quà mừng
+    const qrPop = document.getElementById('qrPop');
+    const btn_qr = document.querySelector('.js_qr');
+    const heartsBox = qrPop.querySelector('.qrp_hearts');
+    let lastFocus = null;
 
-    function show_pop_up() {
-        pop_up.classList.add('show')
+    function spawnHearts() {
+        if (heartsBox.childElementCount) return;
+        const cols = ['#c8283a', '#e04a5b', '#f2a0a8', '#e2b455'];
+        for (let i = 0; i < 16; i++) {
+            const h = document.createElement('i');
+            const s = 10 + Math.random() * 14;
+            h.style.left = (Math.random() * 100) + '%';
+            h.style.width = h.style.height = s + 'px';
+            h.style.background = cols[i % cols.length];
+            h.style.setProperty('--t', (6 + Math.random() * 6).toFixed(1) + 's');
+            h.style.setProperty('--dl', (Math.random() * 6).toFixed(1) + 's');
+            h.style.setProperty('--x', (Math.random() * 60 - 30).toFixed(0) + 'px');
+            heartsBox.appendChild(h);
+        }
     }
-
-    function hide_pop_up() {
-        pop_up.classList.remove('show')
+    function openQr() {
+        lastFocus = document.activeElement;
+        spawnHearts();
+        qrPop.classList.add('open');
+        qrPop.setAttribute('aria-hidden', 'false');
+        document.documentElement.classList.add('qr-lock');
+        setTimeout(() => qrPop.querySelector('.qrp_close').focus(), 50);
     }
-
-    btn_qr.addEventListener('click', show_pop_up)
-    pop_up.addEventListener('click', hide_pop_up)
-    pop_up_item1.addEventListener('click', function(event) {
-        event.stopPropagation();
-    })
-    pop_up_item2.addEventListener('click', function(event) {
-        event.stopPropagation();
-    })
-
-
-    // xử lý kích thước pop up
-    const items = document.querySelectorAll('.popup_item');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const ratio = entry.intersectionRatio; // 0 -> 1
-            const value = 0.8 + 0.2 * ratio; // map từ 0.5 -> 1
-            entry.target.style.opacity = value.toFixed(2);
-            entry.target.style.transform = `scale(${value.toFixed(2)})`;
-        });
-    }, {
-        root: document.querySelector('.popup_container'),
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100)
+    function closeQr() {
+        qrPop.classList.remove('open');
+        qrPop.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('qr-lock');
+        if (lastFocus) lastFocus.focus();
+    }
+    btn_qr.addEventListener('click', openQr);
+    qrPop.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeQr));
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && qrPop.classList.contains('open')) closeQr();
     });
 
-    items.forEach(item => observer.observe(item));
-
-
-    // copyyyyyyyyyyy
+    // copy số tài khoản
     function showToast() {
         const toast = document.getElementById('copy-toast');
         toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 1000);   
+        setTimeout(() => toast.classList.remove('show'), 1200);
     }
-
-    document.querySelectorAll('.copy').forEach(copyBtn => {
-        copyBtn.addEventListener('click', function () {
-            const text = this.dataset.copy;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast();
-            console.log(`Đã copy: ${text}`);
-            }).catch(err => {
-            console.error('Copy thất bại: ', err);
-            });
+    document.querySelectorAll('.qrp_copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(btn.dataset.copy).then(showToast).catch(err => console.error('Copy thất bại: ', err));
         });
     });
-
-
-
 
 </script>
   
