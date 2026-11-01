@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Static single-page wedding invitation site (Vietnamese, "Nguyễn Tiến & Ngọc Lan"), deployed at https://thiepcuoitienlan.id.vn/. No build system, package manager, linter, or tests — open `index.html` directly or serve the folder with any static server (e.g. `python -m http.server`).
+Static single-page wedding invitation site (Vietnamese, "Xuân Hiểu & Quỳnh Trang"), deployed at https://xuanhieu-quynhtrang.huahua.id.vn/. No build system, package manager, linter, or tests — open `index.html` directly or serve the folder with any static server (e.g. `python -m http.server`).
 
 ## Architecture
 
