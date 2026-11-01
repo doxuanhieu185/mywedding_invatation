@@ -297,7 +297,7 @@ animation: flash-shadow 2s infinite;
     transition: opacity 0.3s ease;
     z-index: 5;
     font-size: 14px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Playfair Display", Georgia, serif;
   }
   #copy-toast.show {
     opacity: 1;
@@ -324,7 +324,7 @@ animation: flash-shadow 2s infinite;
 }
 
 .album_header span {
-    font-family: 'Alex Brush', cursive;
+    font-family: "Great Vibes", cursive;
     font-size: 24px;
     color: #555;
     white-space: nowrap;
@@ -396,7 +396,7 @@ animation: flash-shadow 2s infinite;
     text-align: center;
     color: rgb(255, 255, 255);
 
-    font-family: "Alex Brush", cursive;
+    font-family: "Great Vibes", cursive;
     font-weight: 400;
     font-style: normal;
     font-size: 30px;
